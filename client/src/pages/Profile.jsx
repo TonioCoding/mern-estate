@@ -40,11 +40,12 @@ export default function Profile (){
     },
     ()=> {
       getDownloadURL(uploadTask.snapshot.ref).then
-      ((downloadURL) => 
+      ((downloadURL) =>
       setFormData({...formData, avatar: downloadURL })
-      );
+    );
     },
     )
+
   };
   return (
     <div className='p-3 max-w-lg mx-auto'>
@@ -67,10 +68,10 @@ export default function Profile (){
         cursor-pointer self-center mt-2' 
         />
 
-        <p>
+        <p className='text-sm self-center'>
           {fileUploadError ? (
             <span className='text-red-700'>Error Image 
-          upload</span>
+          upload(image must be less than 2 mb)</span>
           ) : filePerc > 0 && filePerc < 100 ? (
             <span className='text-slate-700'>{`Uploading 
             ${filePerc}%`}</span>
