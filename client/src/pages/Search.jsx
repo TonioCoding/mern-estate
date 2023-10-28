@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import ListingItem from '../components/ListingItem';
 
 export default function () {
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ export default function () {
     const [loading, setLoading] = useState(false);
     const [listings, setListings] = useState([]);
     console.log(listings)
+
 
     useEffect(() => {
 
@@ -45,8 +47,8 @@ export default function () {
                 parking: parkingFromUrl || 'true' ? true : false,
                 furnished: furnishedFromUrl || 'true' ? true : false,
                 offer: offerFromUrl === 'true' ? true : false,
-                sort: sortFromUrl || "created_at",
-                order: orderFromUrl || "desc",
+                sort: sortFromUrl || 'created_at',
+                order: orderFromUrl || 'desc',
             });
         }
 
@@ -74,14 +76,14 @@ export default function () {
         }
 
         if(e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer'){
-            setSidebardata({...sidebardata, [e.target.id]: e.target.checked || e.target.checked === 'true'
-        ? true : false})
+            setSidebardata({...sidebardata, [e.target.id]: e.target.checked || e.target.checked === 'true' ? 
+            true : false})
         }
 
         if(e.target.id === 'sort_order'){ 
             const sort = e.target.value.split('_')[0] || 'created_at';
 
-            const order = e.target.value.split('_')[0] || 'desc';
+            const order = e.target.value.split('_')[1] || 'desc';
 
             setSidebardata({...sidebardata, sort, order});
         }
@@ -128,7 +130,8 @@ export default function () {
 
                     <div className="flex gap-2">
                         <input 
-                        type="checkbox" id='all' 
+                        type="checkbox" 
+                        id='all' 
                         className='w-5'
                         onChange={handleChange}
                         checked={sidebardata.type = 'all'}
@@ -138,7 +141,8 @@ export default function () {
                     </div>
                     <div className="flex gap-2">
                         <input 
-                        type="checkbox" id='rent' 
+                        type="checkbox" 
+                        id='rent' 
                         className='w-5'
                         onChange={handleChange}
                         checked={sidebardata.type === 'rent'}
@@ -160,7 +164,7 @@ export default function () {
                         id='offer' 
                         className='w-5'
                         onChange={handleChange}
-                        checked={sidebardata.offer === true}
+                        checked={sidebardata.offer}
                         />
                         <span>Offer</span>
                     </div>
@@ -210,9 +214,22 @@ export default function () {
                 p-3 rounded-lg uppercase hover:opacity-95">Search</button>
             </form>
         </div>
-        <div className="">
+        <div className="flex-1">
             <h1 className='text-3xl font-semibold border-b 
             p-3 text-slate-700 mt-5'>Listing results:</h1>
+            <div className='p-7 flex flex-wrap gap-4'>
+                {!loading && listings.length === 0 && (
+                    <p className=' text-xl text-slate-700'>No listing found!</p>
+                )}
+
+                {loading && (
+                    <p className='text-xl text-slate-700 text-center w-full'>Loading...</p>
+                )}
+
+                {
+                !loading && listings && listings.map((listing) => {<ListingItem key={listing._id} listing={listing}/>})
+                }
+            </div>
         </div>
     </div>
   )
