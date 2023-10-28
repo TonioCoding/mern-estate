@@ -17,7 +17,7 @@ export default function () {
 
     const [loading, setLoading] = useState(false);
     const [listings, setListings] = useState([]);
-    console.log(listings)
+    
 
 
     useEffect(() => {
@@ -44,8 +44,8 @@ export default function () {
             setSidebardata({
                 searchTerm: searchTermFromUrl || '',
                 type: typeFromUrl || 'all',
-                parking: parkingFromUrl || 'true' ? true : false,
-                furnished: furnishedFromUrl || 'true' ? true : false,
+                parking: parkingFromUrl === 'true' ? true : false,
+                furnished: furnishedFromUrl === 'true' ? true : false,
                 offer: offerFromUrl === 'true' ? true : false,
                 sort: sortFromUrl || 'created_at',
                 order: orderFromUrl || 'desc',
@@ -91,7 +91,6 @@ export default function () {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         const urlParams = new URLSearchParams();
         urlParams.set('searchTerm', sidebardata.searchTerm);
         urlParams.set('type', sidebardata.type);
@@ -101,10 +100,8 @@ export default function () {
         urlParams.set('sort', sidebardata.sort);
         urlParams.set('order', sidebardata.order);
         const searchQuery = urlParams.toString();
-        navigate(`/search?${searchQuery}`)
-
-
-    }
+        navigate(`/search?${searchQuery}`);
+    };
     
 
 
@@ -134,7 +131,7 @@ export default function () {
                         id='all' 
                         className='w-5'
                         onChange={handleChange}
-                        checked={sidebardata.type = 'all'}
+                        checked={sidebardata.type === 'all'}
                         />
 
                         <span>Rent & Sell</span>
