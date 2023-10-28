@@ -17,6 +17,7 @@ export default function () {
 
     const [loading, setLoading] = useState(false);
     const [listings, setListings] = useState([]);
+    console.log(listings)
     
 
 
@@ -224,7 +225,7 @@ export default function () {
                 )}
 
                 {
-                !loading && listings && listings.map((listing) => {<ListingItem key={listing._id} listing={listing}/>})
+                !loading && listings && listings.map((listing) => (<ListingItem key={listing._id} listing={listing}/>))
                 }
             </div>
         </div>
