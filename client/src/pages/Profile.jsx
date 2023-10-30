@@ -128,7 +128,6 @@ export default function Profile (){
       const data = await res.json();
       if (data.success === false) {
         setShowListingsError(true);
-        <p className='text-red-700'>Sign back in!</p>
         return
       }
 
