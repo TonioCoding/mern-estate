@@ -230,7 +230,7 @@ export default function CreateListing() {
         <div className='flex flex-col flex-1 gap-4'>
           <p className='font-semibold '>Images:
           <span className='font-normal text-gray-600 ml-2'>
-            The first image will be the cover (max 6)
+            The first image will be the cover (max photos: 6)
             </span>
           </p>
           <div className="flex gap-4">
