@@ -76,21 +76,24 @@ const Home = () => {
 
 
         {/* Swiper */}
-        <Swiper navigation>
-        {
-          offerListings && offerListings.length > 0 &&
-          offerListings.map((listing) => (
-            <SwiperSlide key={listing._id}>
-              <div 
-              /*key={listing._id}*/ 
-              style={{background: `url(${listing.imageUrls[0]}) center no-repeat`, 
-              backgroundSize:"cover"}} 
-              className="h-[500px]">
-              </div>
-            </SwiperSlide>
-          ))
-        }
-        </Swiper>
+        <div className="shadow-xl">
+          <Swiper navigation className='shadow-xl shadow-slate-400'>
+          {
+            offerListings && offerListings.length > 0 &&
+            offerListings.map((listing) => (
+              <SwiperSlide key={listing._id}>
+                <div 
+                /*key={listing._id}*/ 
+                style={{background: `url(${listing.imageUrls[0]}) center no-repeat`, 
+                backgroundSize:"cover"}} 
+                className="h-[500px]">
+                </div>
+              </SwiperSlide>
+            ))
+         }
+          </Swiper>
+        </div>
+        
 
        
 
