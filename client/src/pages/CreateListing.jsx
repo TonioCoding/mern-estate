@@ -204,7 +204,7 @@ export default function CreateListing() {
 
             <div className='flex items-center gap-2'>
               <input className='p-3 border border-gray-300 rounded-lg' 
-              type="number" id='regularPrice' min='50' max='10000000' required onChange={handleChange} value={formData.regularPrice}/>
+              type="number" id='regularPrice' min='50' max='999999999' required onChange={handleChange} value={formData.regularPrice}/>
 
               <div className='flex flex-col items-center'>
               <p>Regular price</p>
@@ -216,7 +216,7 @@ export default function CreateListing() {
 
             <div className='flex items-center gap-2'>
               <input className='p-3 border border-gray-300 rounded-lg' 
-              type="number" id='discountPrice' min='0' max='10000000' required onChange={handleChange} value={formData.discountPrice}/>
+              type="number" id='discountPrice' min='0' max='999999999' required onChange={handleChange} value={formData.discountPrice}/>
 
               <div className='flex flex-col items-center'>
               <p>Discounted price</p>
