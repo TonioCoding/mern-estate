@@ -88,25 +88,25 @@ export default function CreateListing() {
   }
 
   const handleChange = (e) => {
-    if (e.target.id === 'sale' || e.target.id === 'rent'){
+    if (e.target.id === 'sell' || e.target.id === 'rent'){
       setFormData({
         ...formData,
         type: e.target.id
-      })
+      });
     }
 
     if (e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer'){
       setFormData({
         ...formData,
         [e.target.id]: e.target.checked
-      })
+      });
     }
 
     if(e.target.type === 'number' || e.target.type === 'text' || e.target.type === 'textarea'){
       setFormData({
         ...formData,
         [e.target.id]: e.target.value,
-      })
+      });
     }
 
   }
@@ -164,7 +164,7 @@ export default function CreateListing() {
 
           <div className='flex gap-6 flex-wrap'>
             <div className="flex gap-2">
-              <input type="checkbox" id='sell' className='w-5 ' onChange={handleChange} checked={formData.type === 'sale'}/>
+              <input type="checkbox" id='sell' className='w-5 ' onChange={handleChange} checked={formData.type === 'sell'}/>
               <span>Sell</span> 
             </div>
 
