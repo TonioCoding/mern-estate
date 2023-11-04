@@ -1,3 +1,4 @@
+//imports
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -18,7 +19,9 @@ import Contact from '../components/Contact';
 
 // https://sabe.io/blog/javascript-format-numbers-commas#:~:text=The%20best%20way%20to%20format,format%20the%20number%20with%20commas.
 
+//main function
 export default function Listing() {
+  //states and intialization
   SwiperCore.use([Navigation]);
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -28,7 +31,9 @@ export default function Listing() {
   const params = useParams();
   const { currentUser } = useSelector((state) => state.user);
 
+  //effect
   useEffect(() => {
+
     const fetchListing = async () => {
       try {
         setLoading(true);
@@ -50,6 +55,7 @@ export default function Listing() {
     fetchListing();
   }, [params.listingId]);
 
+  //display
   return (
     <main>
       {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
