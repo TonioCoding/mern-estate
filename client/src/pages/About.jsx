@@ -1,6 +1,7 @@
-import React from 'react'
+//imports
 import { Link } from 'react-router-dom'
 
+//main function
 const About = () => {
   return (
     <div className='py-20 px-4 max-w-6xl mx-auto'>

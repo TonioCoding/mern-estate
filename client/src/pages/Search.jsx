@@ -1,8 +1,11 @@
+//imports
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import ListingItem from '../components/ListingItem';
 
+//main function
 export default function () {
+    //states and intialization
     const navigate = useNavigate();
     const [sidebardata, setSidebardata] = useState({
         searchTerm: "",
