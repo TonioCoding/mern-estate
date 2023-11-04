@@ -1,6 +1,8 @@
+//imports
 import { Link } from 'react-router-dom'
 import { MdLocationOn } from 'react-icons/md'
 
+//main function
 export default function ListingItem({listing}) {
   return (
     <div className='bg-white shadow-md hover:shadow-lg
