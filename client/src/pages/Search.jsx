@@ -23,7 +23,7 @@ export default function () {
     const [showMore, setShowMore] = useState(false);
      
 
-
+    //effect
     useEffect(() => {
 
         const urlParams = new URLSearchParams(location.search);
@@ -35,6 +35,8 @@ export default function () {
         const sortFromUrl = urlParams.get('sort');
         const orderFromUrl = urlParams.get('order');
 
+
+        //search bar logic
         if(
             searchTermFromUrl ||
             typeFromUrl ||
@@ -56,7 +58,6 @@ export default function () {
             });
         }
 
-
         const fetchListings = async () => {
             setLoading(true);
             setShowMore(false);
@@ -75,6 +76,8 @@ export default function () {
         fetchListings();
     }, [location.search]);
 
+
+    //functions for search page
     const handleChange = (e) => {
         
         if(e.target.id === 'all' || e.target.id === 'rent' || e.target.id === 'sale'){
@@ -128,7 +131,7 @@ export default function () {
     }
     
 
-
+    //display
   return (
     <div className='flex flex-col md:flex-row'>
         <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen">
