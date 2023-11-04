@@ -1,3 +1,4 @@
+//imports
 import { useRef, useState, useEffect } from 'react';
 import {useSelector} from 'react-redux';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
@@ -6,7 +7,10 @@ import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailur
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+//main function
 export default function Profile (){
+  
+  //states and intialization
   const fileRef = useRef(null);
   const {currentUser, loading, error} = useSelector((state) => state.user);
   const [file, setFile] = useState(undefined);
@@ -17,22 +21,21 @@ export default function Profile (){
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
   const dispatch = useDispatch();
-  
-
-  
-
- 
+   
   // firebase storage
   // allow read;
   // allow write: if
   // request.resource.size < 2 * 1024 * 1024 &&
   // request.resource.contentType.matches('image/.*')
 
+  //effect
   useEffect(() => {
     if(file){
       handleFileUpload(file);
     }
   }, [file]);
+
+  //Functions for Profile page
 
   const handleFileUpload = (file) => {
     const storage = getStorage(app);
@@ -41,27 +44,29 @@ export default function Profile (){
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
-    'state_changed',
-    (snapshot) => {
+      'state_changed',
+      (snapshot) => {
       const progress = (snapshot.bytesTransferred /
       snapshot.totalBytes) * 100;
       setFilePerc(Math.round(progress));
-    },
-    (error) =>{
+      },
+      (error) =>{
       setFileUploadError(true);
-    },
-    ()=> {
-      getDownloadURL(uploadTask.snapshot.ref).then
-      ((downloadURL) =>
-      setFormData({...formData, avatar: downloadURL })
-      );
-    },
-  );
-};
+      },
+      ()=> {
+        getDownloadURL(uploadTask.snapshot.ref).then
+        ((downloadURL) =>
+        setFormData({...formData, avatar: downloadURL })
+        );
+      },
+    );
+  };
+
 
   const handleChange = (e) => {
     setFormData({...formData, [e.target.id]: e.target.value });
   };
+
 
   const handleSubmit =  async (e) => {
     e.preventDefault();
@@ -87,6 +92,7 @@ export default function Profile (){
     }
   };
 
+
   const handleDeleteUser = async () => {
       try {
         dispatch(deleteUserStart());
@@ -106,6 +112,7 @@ export default function Profile (){
       }
   };
 
+
   const handleSignOut =  async () => {
     try {
       dispatch(signOutUserStart());
@@ -120,6 +127,7 @@ export default function Profile (){
       dispatch(deleteUserFailure(data.message));
     }
   }
+
 
   const handleShowListings = async () => {
     try {
@@ -136,6 +144,7 @@ export default function Profile (){
       setShowListingsError(true);
     }
   }
+
 
   const handleListingDelete = async (listingId) => {
     try {
@@ -155,6 +164,7 @@ export default function Profile (){
     }
   }
 
+  //display
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center 
@@ -255,7 +265,6 @@ export default function Profile (){
             </Link>
           </div>
         </div>))}
-
       </div>}
     </div>
   );
