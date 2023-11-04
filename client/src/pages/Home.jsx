@@ -1,3 +1,4 @@
+//imports
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {Swiper, SwiperSlide} from 'swiper/react';
@@ -6,15 +7,18 @@ import SwiperCore from 'swiper'
 import {Navigation} from 'swiper/modules'
 import ListingItem from '../components/ListingItem'
 
+//Main Function
 const Home = () => {
+  //states
   const [offerListings, setOfferListings] = useState([]);
   const [saleListings, setSaleListings] = useState([]);
   const [rentListings, setRentListings] = useState([]);
   SwiperCore.use([Navigation]);
   console.log(saleListings)
  
-
+  //effect
   useEffect(() => {
+
     const fetchOfferListings = async () => {
       try {
         const res = await fetch('/api/listing/get?offer=true&limit=4');
@@ -50,8 +54,11 @@ const Home = () => {
 
     fetchOfferListings();
   }, []);
+
+  //Display
   return (
     <div className="">
+
        {/* Top */}
         <div className="flex flex-col gap-6 p-28 px-3 
         max-w-6xl mx-auto">
@@ -74,7 +81,6 @@ const Home = () => {
           </Link>
         </div>
 
-
         {/* Swiper */}
         <div className="shadow-xl">
           <Swiper navigation className='shadow-xl shadow-slate-400'>
@@ -94,10 +100,6 @@ const Home = () => {
           </Swiper>
         </div>
         
-
-       
-
-
         {/* listing results for offer, sale and rent */}
         <div className="max-w-6xl mx-auto p-3 flex flex-col 
         gap-8 my-10">
@@ -121,7 +123,6 @@ const Home = () => {
                 </div>
               </div>
             )}
-
 
           {
             rentListings && rentListings.length > 0 && (
@@ -167,7 +168,6 @@ const Home = () => {
             )}
         </div>
     </div>
-
   )
 }
 
